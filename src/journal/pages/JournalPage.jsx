@@ -1,18 +1,31 @@
 import { AddOutlined } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { startNewNote } from "../../store/journal";
 import { JournalLayout } from "../layout/JournalLayout";
-import { NothingSelectedView } from "../view";
+import { NoteView, NothingSelectedView } from "../view";
 
 
 export const JournalPage = () => {
+
+  const dispatch = useDispatch()
+  const { isSaving, active } = useSelector(state => state.journal)
+
+  const onClickNewNote = ()=>{
+    dispatch( startNewNote() )
+  }
+
+
   return (
     <>
       <JournalLayout>
 
         
-        <NothingSelectedView />
-        {/* <NoteView /> */}
-
+        
+        {
+          ( !!active ) ?  <NoteView /> : <NothingSelectedView /> //se usa el !! para covnertirlo en booleano, pq al principio viene como null y puede dar errores 
+        }
+      
         <IconButton
           size="large"
           sx={{
@@ -24,6 +37,8 @@ export const JournalPage = () => {
             bottom: 50
 
           }}
+          onClick={ onClickNewNote }
+          disabled={ isSaving }
         >
           <AddOutlined  sx={{ fontSize: 30 }} />
         </IconButton>
