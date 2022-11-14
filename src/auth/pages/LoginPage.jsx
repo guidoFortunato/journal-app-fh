@@ -18,15 +18,18 @@ import {
 } from "../../store/auth";
 import { AuthLayout } from "../layouts/AuthLayout";
 
+
+const formData = {
+  email: "guido@test.com",
+  password: "123456",
+}
+
 export const LoginPage = () => {
   const { status, errorMessage } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
-  const { email, password, onInputChange, formState } = useForm({
-    email: "guido@test.com",
-    password: "123456",
-  });
+  const { email, password, onInputChange, formState } = useForm(formData);
 
   const isAuthenticating = useMemo(() => status === "checking", [status]);
 

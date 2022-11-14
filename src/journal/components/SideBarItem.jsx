@@ -17,6 +17,8 @@ export const SideBarItem = ({ title = "", body, id, date, imageURL = [] }) => {
 
   const dispatch = useDispatch();
 
+  // console.log('se dispara side bar item')
+
   const onClickNote = () => {
     dispatch(setActiveNote({ title, body, id, date, imageURL }));
   };
