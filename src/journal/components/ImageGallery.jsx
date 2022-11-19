@@ -2,7 +2,6 @@ import { ImageList, ImageListItem } from "@mui/material";
 
 
 export const ImageGallery = ({images = []})=> {
-  console.log(images)
 
 
   return (
